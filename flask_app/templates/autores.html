@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- CSS only -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+	<title>Autores</title>
+</head>
+<body>
+	<main class="d-flex justify-content-between">
+		<div class="caja">
+			<form action="/crearautor" method="POST" class="p-4 bg-dark text-light">
+				<h2 class="text-center text-primary">Nuevo Autor:</h2>
+				<div class="form-group">
+					<label class="form-label" for="a_nombre">Nombre:</label>
+					<input type="text" name="a_nombre" id="name" class="form-control">
+				</div>
+				<div class="form-group">
+					<input type="submit" value="Create Autor" class="btn btn-primary btn-outline-dark">
+				</div>
+			</form>
+		</div>
+			<div class="caja">
+				<div class="p-4 bg-dark text-light">
+					<table class="table table-dark table-striped">
+						<thead>
+							<tr class="table-secondary">
+								<th class="text-center text-primary fs-2 bg-dark">Autores</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for one_autor in autores %}
+								<tr>
+									<td class="text-center">
+										<a href="/autor/{{ one_autor.id }}">{{ one_autor.nombre }}</a>
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+	</main>
+	<footer class="text-end">
+		<a href="/libros">Agregar Libro</a>
+	</footer>
+</body>
+</html>
